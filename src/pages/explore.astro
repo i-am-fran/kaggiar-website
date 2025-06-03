@@ -1,0 +1,162 @@
+---
+import { getCollection } from "astro:content";
+import Container from "@components/Container.astro";
+import PageLayout from "@layouts/PageLayout.astro";
+import Link from "@components/Link.astro";
+import { dateRange } from "@lib/utils";
+import { SITE, EXPLORE, SOCIALS } from "@consts";
+import BookNow from "@components/BookNow.astro";
+
+---
+
+
+<PageLayout title={EXPLORE.TITLE} description={EXPLORE.DESCRIPTION}>
+    <Container>
+        <h3 class="animate font-semibold text-black dark:text-white">
+            Explore Pantelleria
+        </h3>
+        <div class="space-y-16">
+            <section>
+                <article class="space-y-4">
+                    <h4 class="animate font-semibold">
+                        🌊 Highlights
+                    </h4>
+                    <p class="animate">
+                        <ul class="list-disc pl-6 animate">
+                            <li><strong>Lago di Venere:</strong> soak in thermal muds, amazing views</li>
+                            <li><strong>Gadir:</strong> natural hot springs, especially peaceful at night or around
+                                dinner time</li>
+                            <li><strong>Cala Cinque Denti:</strong> best visited in the morning sun, great for swimming
+                                toward <em>Cinderella’s Slipper</em> rock</li>
+                            <li><strong>Natural sauna and favare:</strong> visit at sunset, perfect on windy or cooler
+                                days</li>
+                            <li><strong>Laghetto delle Ondine:</strong> to there only after strong mistral winds,
+                                otherwise the water becomes stagnant. During summer there is a delicious food truck
+                                parked just at the entrance that makes great food - only at lunch !</li>
+                            <li><strong>Balata dei Turchi:</strong> stunning and remote spot accessed by a dirt road
+                                with panoramic views</li>
+                            <li><strong>Boat tour around the island:</strong> a must!</li>
+                        </ul>
+                    </p>
+                    <p class="animate">
+                        ⛵ Check out <a target="_blank" href="https://www.pantipity.com/">Pantipy</a>, they organise
+                        tours
+                        for small groups, excellent guide both for walking tours and boat tours, and authentic
+                        experiences (the owner is a good friend of mine!)
+                    </p>
+                </article>
+            </section>
+            <section>
+                <article class="space-y-4">
+                    <h4 class="animate font-semibold">
+                        🍽 Reccommended restaurants
+                    </h4>
+                    <p class="animate">
+                        <ul class="list-disc pl-6 animate">
+                            <li><strong><a target="_blank"
+                                        href="https://www.google.com/maps/place/trattoria+a+favarotta/@36.8069715,12.0083598,900m/data=!3m1!1e3!4m14!1m7!3m6!1s0x131caed9902fd69b:0xec157e41a7fc1643!2strattoria+a+favarotta!8m2!3d36.8069715!4d12.0109401!16s%2Fg%2F1tg2ykj2!3m5!1s0x131caed9902fd69b:0xec157e41a7fc1643!8m2!3d36.8069715!4d12.0109401!16s%2Fg%2F1tg2ykj2?entry=ttu&g_ep=EgoyMDI1MDUyMS4wIKXMDSoASAFQAw%3D%3D">La
+                                        Favarotta:</a></strong> rustic trattoria inland with a cozy atmosphere</li>
+                            <li><strong><a target="_blank"
+                                        href="https://www.google.com/maps/place/Trattoria+da+Pina/@36.8179788,11.9868123,900m/data=!3m2!1e3!4b1!4m6!3m5!1s0x131ca8d7cdbbdab3:0xab7a30e379314b6e!8m2!3d36.8179788!4d11.9893926!16s%2Fg%2F11gbfd86mb?entry=ttu&g_ep=EgoyMDI1MDUyMS4wIKXMDSoASAFQAw%3D%3D">Da
+                                        Pina:</a></strong> near Lago di Venere, great traditional cuisine</li>
+                            <li><strong><a target="_blank"
+                                        href="https://www.google.com/maps/place/Le+Cale/@36.7974044,12.0453511,900m/data=!3m2!1e3!4b1!4m6!3m5!1s0x131ca9c0aa2451bb:0xbff0cc6a6f7f44d6!8m2!3d36.7974044!4d12.0479314!16s%2Fg%2F1tdlr647?entry=ttu&g_ep=EgoyMDI1MDUyMS4wIKXMDSoASAFQAw%3D%3D">Le
+                                        Cale:</a></strong> seaside location, excellent seafood</li>
+                            <li><strong><a target="_blank"
+                                        href="https://www.google.com/maps/place/L'isola+nell'isola/@36.7842282,12.0034593,7200m/data=!3m1!1e3!4m9!1m2!2m1!1sRistoranti!3m5!1s0x131ca907013aa09b:0x8045ed43db5d6d62!8m2!3d36.7934978!4d12.0207003!16s%2Fg%2F1tgwjxxq?entry=ttu&g_ep=EgoyMDI1MDUyMS4wIKXMDSoASAFQAw%3D%3D">Murana
+                                        / L’Isola nell’Isola:</a></strong> unforgettable food and ambiance in the
+                                vineyards</li>
+                            <li><strong><a target="_blank"
+                                        href="https://www.google.com/maps/place/Il+Principe+e+il+Pirata/@36.8088337,11.9927305,7198m/data=!3m1!1e3!4m10!1m2!2m1!1sRistoranti!3m6!1s0x131ca9abc282453d:0xc7c71bb34932815f!8m2!3d36.8088344!4d12.0308399!15sCgpSaXN0b3JhbnRpWgwiCnJpc3RvcmFudGmSAQpyZXN0YXVyYW50qgFCEAEqDiIKcmlzdG9yYW50aSgHMh4QASIa_YvWNsbMoQggPGqqmzvGV58SbB0qtxFtAcwyDhACIgpyaXN0b3JhbnRp4AEA!16s%2Fg%2F1tcyns33?entry=ttu&g_ep=EgoyMDI1MDUyMS4wIKXMDSoASAFQAw%3D%3D">Il
+                                        principe e il pirata:</a></strong> cozy seaside spot with fresh seafood and
+                                rustic charm.</li>
+                            <li><strong><a target="_blank" href="https://www.instagram.com/u_jardinu_di_mastro_titta/">U
+                                        Jardinu di Mastro Titta:</a> </strong> a charming and authentic home restaurant
+                            </li>
+                            <li><strong><a target="_blank"
+                                        href="https://www.google.com/maps/place/I+Giardini+dei+Rodo/@36.7594032,11.9864992,900m/data=!3m2!1e3!4b1!4m6!3m5!1s0x131cabf1831ded4d:0xb19ac01f7db998c8!8m2!3d36.7594032!4d11.9890795!16s%2Fg%2F11bw47chv3?entry=ttu&g_ep=EgoyMDI1MDUyMS4wIKXMDSoASAFQAw%3D%3D">I
+                                        giardini dei Rodo:</a></strong> elegant restaurant with a beautiful garden and
+                                refined<br />
+                                Mediterranean cuisine.</li>
+                            <li><strong><a target="_blank"
+                                        href="https://www.google.com/maps/place/Trattoria+Runcune/@36.802302,12.016414,2545m/data=!3m1!1e3!4m9!1m2!2m1!1sRistoranti!3m5!1s0x131ca9b0e5f14057:0x4c4691f1e3fc1529!8m2!3d36.8043231!4d12.0225097!16s%2Fg%2F11fml342tx?entry=ttu&g_ep=EgoyMDI1MDUyMS4wIKXMDSoASAFQAw%3D%3D">Trattoria
+                                        Runcune:</a></strong> Traditional trattoria offering hearty local dishes in a
+                                relaxed atmosphere.</li>
+                            <li><strong><a target="_blank"
+                                        href="https://www.google.com/maps/place/Ristorante+Bar+La+Vela/@36.7673718,11.9205087,14404m/data=!3m1!1e3!4m10!1m2!2m1!1sRistoranti!3m6!1s0x131caf057717045b:0x171738a5bcf9d285!8m2!3d36.7673686!4d11.965833!15sCgpSaXN0b3JhbnRpWgwiCnJpc3RvcmFudGmSAQpyZXN0YXVyYW50qgFCEAEqDiIKcmlzdG9yYW50aSgHMh4QASIa_YvWNsbMoQggPGqqmzvGV58SbB0qtxFtAcwyDhACIgpyaXN0b3JhbnRp4AEA!16s%2Fg%2F1tdwxsqd?entry=ttu&g_ep=EgoyMDI1MDUyMS4wIKXMDSoASAFQAw%3D%3D">La
+                                        Vela:</a></strong> Waterfront dining with stunning views and fresh seafood.</li>
+                        </ul>
+                    </p>
+                </article>
+            </section>
+            <section>
+                <article class="space-y-4">
+                    <h4 class="animate font-semibold">
+                        🥖 Snacks & small bites
+                    </h4>
+                    <p class="animate">
+                        <ul class="list-disc pl-6 animate">
+                            <li><strong><a target="_blank"
+                                        href="https://www.google.com/maps/place/Pinuzzu+u+Palermitanu/@36.8307925,11.939276,900m/data=!3m2!1e3!4b1!4m6!3m5!1s0x131caf05c7d426cd:0x93e971965ede5e70!8m2!3d36.8307925!4d11.9418563!16s%2Fg%2F11d_8l5mv8?entry=ttu&g_ep=EgoyMDI1MDUyMS4wIKXMDSoASAFQAw%3D%3D">Pinuzzu
+                                        u Palermitanu:</a></strong> a classic local bakery in the main town of
+                                Pantelleria, great for pizza slices to take on boat rides</li>
+                            <li><strong><a target="_blank"
+                                        href="https://www.google.com/maps/place/Panificio+Terremoto/@36.7995912,12.0317881,900m/data=!3m3!1e3!4b1!5s0x131ca9a5ab5ffabd:0x4cd0114cbf565381!4m6!3m5!1s0x131ca965741c1b4d:0x31d5046ac8713432!8m2!3d36.7995912!4d12.0343684!16s%2Fg%2F11h1g6gk25?entry=ttu&g_ep=EgoyMDI1MDUyMS4wIKXMDSoASAFQAw%3D%3D">Terremoto:</a></strong>
+                                beloved bakery in the Khamma area (bread, fresh pasta, slices of pizzas and oven pizza
+                                in the weekends)</li>
+                            <li><strong><a target="_blank"
+                                        href="https://www.google.com/maps/place/Panificio+Marrone+Francesco/@36.7671391,11.9713026,3a,75y,90t/data=!3m8!1e2!3m6!1sCIHM0ogKEICAgIDE-qzeSQ!2e10!3e12!6shttps:%2F%2Flh3.googleusercontent.com%2Fgps-cs-s%2FAC9h4noUIZmQ2_EiIbUlZG64vHbGsoaldMxJWitwE_HyOgfoBBn_fHljCn31Zp9_cVMrVNWDfHZ3eNfED0KavIeThjcTo-Ce-TiP9cVmRKtG_bVDBIJplJd-VB4js1ZogYBOmzBNAHdj%3Dw182-h86-k-no!7i4608!8i2176!4m7!3m6!1s0x131cac196b7d5c6d:0x7dc12fba37a368ab!8m2!3d36.7671344!4d11.9712795!10e5!16s%2Fg%2F11b6h_7g5v?entry=ttu&g_ep=EgoyMDI1MDUyMS4wIKXMDSoASAFQAw%3D%3D">Panificio
+                                        Marrone Francesco:</a></strong> local bakery in the area of Scauri</li>
+
+                        </ul>
+                    </p>
+                </article>
+            </section>
+
+            <section>
+                <article class="space-y-4">
+                    <h4 class="animate font-semibold">
+                        🍷 Aperitivs & wine
+                    </h4>
+                    <p class="animate">
+                        <ul class="list-disc pl-6 animate">
+                            <li><strong><a target="_blank"
+                                        href="https://www.google.com/maps/place/Kay%C3%A0+Kay%C3%A0+-+Bar+del+Porto/@36.7671344,11.9687046,900m/data=!3m1!1e3!4m6!3m5!1s0x131cac1a2cd2520f:0xef61ff966bccf006!8m2!3d36.769518!4d11.963839!16s%2Fg%2F11c525yb6l?entry=ttu&g_ep=EgoyMDI1MDUyMS4wIKXMDSoASAFQAw%3D%3D">Kaya
+                                        Kaya:</a></strong> atmospheric and well-loved by locals sits on the harbor of
+                                Scauri - great for drinks before dinner</li>
+                            <li><strong><a target="_blank"
+                                        href="https://www.google.com/maps/place/Panificio+Terremoto/@36.7995912,12.0317881,900m/data=!3m3!1e3!4b1!5s0x131ca9a5ab5ffabd:0x4cd0114cbf565381!4m6!3m5!1s0x131ca965741c1b4d:0x31d5046ac8713432!8m2!3d36.7995912!4d12.0343684!16s%2Fg%2F11h1g6gk25?entry=ttu&g_ep=EgoyMDI1MDUyMS4wIKXMDSoASAFQAw%3D%3D">Dispensa
+                                        Pantesca:</a></strong> local product taste in Scauri great for aperitivo on the
+                                sunset</li>
+                            <li><strong><a target="_blank"
+                                        href="https://www.google.com/maps/place/Dispensa+Pantesca/@36.7697283,11.9662018,900m/data=!3m3!1e3!4b1!5s0x131cac1b32737b65:0x38a02565b6d2a2a6!4m6!3m5!1s0x131cad657fe5d78d:0x19588a577c72d971!8m2!3d36.7697283!4d11.9687821!16s%2Fg%2F11t5kmvvvj?entry=ttu&g_ep=EgoyMDI1MDUyMS4wIKXMDSoASAFQAw%3D%3D">Panificio
+                                        Marrone Francesco:</a></strong> local bakery in the area of Scauri</li>
+                            <li><strong><a target="_blank"
+                                        href="https://www.google.com/maps/place/Bar+Beluga/@36.791248,12.0359087,900m/data=!3m2!1e3!4b1!4m6!3m5!1s0x131ca9bd58954789:0x64a6b1edd5e4afc8!8m2!3d36.791248!4d12.038489!16s%2Fg%2F1tkfwt6q?entry=ttu&g_ep=EgoyMDI1MDUyMS4wIKXMDSoASAFQAw%3D%3D">Bar
+                                        Beluga</a> (Tracino)</strong> & <strong><a target="_blank"
+                                        href="https://www.google.com/maps/place/Bar+Tiffany/@36.8313698,11.9413059,899m/data=!3m3!1e3!4b1!5s0x131caf0573326f87:0xc66fe0922b4c595e!4m6!3m5!1s0x131caf05733d47c5:0x6e1e3a1677951b36!8m2!3d36.8313698!4d11.9438862!16s%2Fg%2F11fy7ggwyg?entry=ttu&g_ep=EgoyMDI1MDUyMS4wIKXMDSoASAFQAw%3D%3D">Bar
+                                        Tiffany</a> (Pantelleria town):</strong>relaxed local bars </li>
+                            <li><strong><a target="_blank"
+                                        href="https://www.google.com/maps/place/Marco+De+Bartoli+-+Bukkuram/@36.7953936,11.9566601,900m/data=!3m2!1e3!4b1!4m6!3m5!1s0x131caebe410033bb:0x4feda8478ffeaf6b!8m2!3d36.7953936!4d11.9592404!16s%2Fg%2F11byfljh9p?entry=ttu&g_ep=EgoyMDI1MDUyMS4wIKXMDSoASAFQAw%3D%3D">Cantina
+                                        De Bartoli:</a></strong> wine tasting not to miss!</li>
+
+                        </ul>
+                    </p>
+                </article>
+            </section>
+            <section>
+                <article class="space-y-4">
+                    <p class="animate">
+                        If after your trip you discover any great places you'd recommend, I'd love to hear about them
+                        and add them to this list for future guests!
+                    </p>
+                    <p class="animate">
+                        Have a lovely stay!<br />
+                        <em>Lucia</em>
+                    </p>
+                </article>
+            </section>
+            <BookNow></BookNow>
+        </div>
+    </Container>
+</PageLayout>

@@ -1,0 +1,74 @@
+---
+import { getCollection } from "astro:content";
+import Container from "@components/Container.astro";
+import PageLayout from "@layouts/PageLayout.astro";
+import ArrowCard from "@components/ArrowCard.astro";
+import Link from "@components/Link.astro";
+import { dateRange } from "@lib/utils";
+import { SITE, ABOUT, SOCIALS } from "@consts";
+import BookNow from "@components/BookNow.astro";
+
+---
+
+<PageLayout title={ABOUT.TITLE} description={ABOUT.DESCRIPTION}>
+  <Container>
+    <h3 class="animate font-semibold text-black dark:text-white">
+      About
+    </h3>
+    <div class="space-y-16">
+      <section>
+        <article class="space-y-4">
+          <h4 class="animate font-semibold">
+            The space
+          </h4>
+          <p class="animate">
+            The dammuso is organized in two levels, on the ground floor you can find the kitchen with dining area, two
+            living areas with sofas, a bathroom and a bedroom. On the second level, a bedroom with ensuite bathroom.
+          </p>
+          <div class="animate py-6">
+            <img class=" w-full h-auto rounded-md shadow-lg" src="int-01.jpg" alt="Dammuso">
+          </div>
+          <h5 class="animate">
+            Room 1
+          </h5>
+          <p class="animate">
+            Double bed with air conditioning
+          </p>
+          <h5 class="animate">
+            Room 2
+          </h5>
+          <p class="animate">
+            Bed 1 and a half + sofa 1 bed with air conditioning
+          </p>
+          <h5 class="animate">
+            Living room
+          </h5>
+          <p class="animate">
+            Sofa with 1 single bed with fans
+          </p>
+        </article>
+      </section>
+      <section>
+        <article class="space-y-4">
+          <h4 class="animate font-semibold">
+            The outdoors
+          </h4>
+          <p class="animate">
+            The garden gives you the privacy you need to relax and enjoy the surrounding nature, you will find a outdoor
+            dining area covered by a flowered bougainville, sun loungers and hammocks.
+          </p>
+          <div class="animate py-6">
+            <img class=" w-full h-auto rounded-md shadow-lg" src="ext-02.jpg" alt="Dammuso">
+          </div>
+          <p class="animate">
+            Our charming, rustic dammuso is nestled within a beautiful natural park, surrounded by lush woods and
+            untouched nature. You may occasionally share the space with some of the park's friendly inhabitants. These
+            harmless creatures are a natural and essential part of the ecosystem, making this experience even more
+            authentic and connected to nature.
+          </p>
+        </article>
+      </section>
+      <BookNow></BookNow>
+    </div>
+  </Container>
+</PageLayout>

@@ -4,6 +4,8 @@ import PageLayout from "@layouts/PageLayout.astro";
 import Container from "@components/Container.astro";
 import ArrowCard from "@components/ArrowCard.astro";
 import { BLOG } from "@consts";
+import Welcome01 from "@components/Welcome01.astro";
+import Welcome02 from "@components/Welcome02.astro";
 
 const data = (await getCollection("blog"))
   .filter(post => !post.data.draft)
@@ -29,14 +31,15 @@ const years = Object.keys(posts).sort((a, b) => parseInt(b) - parseInt(a));
   <Container>
     <div class="space-y-10">
       <div class="animate font-semibold text-black dark:text-white">
-        Blog
+      Welcome
       </div>
+      <Welcome01 />
       <div class="space-y-4">
         {years.map(year => (
           <section class="animate space-y-4">
-            <div class="font-semibold text-black dark:text-white">
+            {/* <div class="font-semibold text-black dark:text-white">
               {year}
-            </div>
+            </div> */}
             <div>
               <ul class="flex flex-col gap-4">
                 {
@@ -52,5 +55,7 @@ const years = Object.keys(posts).sort((a, b) => parseInt(b) - parseInt(a));
         ))}
       </div>
     </div>
+    <div class="animate">
+      <Welcome02 />
   </Container>
 </PageLayout>
